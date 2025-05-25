@@ -19,8 +19,7 @@ class MyHandler(RegexMatchingEventHandler):
         return super().on_created(event)
 
 def monitor():
-    path = Path("test_folder")
-    #the above path will eventually be changed to Path.home()
+    path = Path.home()
 
     observer = Observer()
     observer.schedule(MyHandler(), path, recursive=True)
