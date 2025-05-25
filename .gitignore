@@ -1,0 +1,4 @@
+.idea/
+__pycache__/
+email_config.py
+test_folder/

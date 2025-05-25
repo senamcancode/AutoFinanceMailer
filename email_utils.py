@@ -7,10 +7,10 @@ import smtplib
 import os
 from email_config import gmail_pass, user, host, port
 
-def send_email_w_report_attachment(to, _from, subject, body, filename):
+def send_email_w_report_attachment(receiver, _from, subject, body, filename):
     message = MIMEMultipart()
 
-    message['To'] = Header(to)
+    message['To'] = Header(receiver)
     message['From'] = Header(_from)
     message['Subject'] = Header(subject)
 
@@ -26,5 +26,7 @@ def send_email_w_report_attachment(to, _from, subject, body, filename):
     server = smtplib.SMTP_SSL(host, port)
     server.login(user, gmail_pass)
 
-    server.sendmail(_from, to, message.as_string())
+    server.sendmail(_from, receiver, message.as_string())
     server.quit()
+
+    return attachment_name
