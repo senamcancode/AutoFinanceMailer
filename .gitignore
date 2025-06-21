@@ -7,3 +7,4 @@ build/
 .DS_Store
 monitor.spec
 AutoFinanceMailer/email_config.py
+utils/email_config.py

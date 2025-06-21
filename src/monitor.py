@@ -6,11 +6,10 @@ from watchdog.events import RegexMatchingEventHandler
 from src.utils.email_utils import send_email_w_report_attachment
 from src.utils.email_config import receiver, user, subject, message
 import logging 
-import time
 
 class MyHandler(RegexMatchingEventHandler):
     def __init__(self):
-        watchdog.events.RegexMatchingEventHandler.__init__(self, regexes=[r'.*\/Downloads\/MonthlyStatement.*-\d{4}\-\d{2}\.pdf$'], ignore_directories=True, case_sensitive=False)
+        watchdog.events.RegexMatchingEventHandler.__init__(self, regexes=[r'MonthlyStatement.*-\d{4}\-\d{2}\.pdf$'], ignore_directories=True, case_sensitive=False)
 
     def on_created(self, event):
         if ".download" in event.src_path:

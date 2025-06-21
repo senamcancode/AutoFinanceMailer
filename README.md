@@ -57,7 +57,8 @@ https://myaccount.google.com/security
 
 
 # Rename this file to email_config.py and fill in your credentials
-```gmail_pass = "your_gmail_app_password_here"\
+```
+gmail_pass = "your_gmail_app_password_here"
 user = "your_email@gmail.com"
 host = "smtp.gmail.com"
 port = 465
