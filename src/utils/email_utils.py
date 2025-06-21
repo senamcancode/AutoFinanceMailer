@@ -5,7 +5,8 @@ from email.mime.application import MIMEApplication
 from email.header import Header
 import smtplib
 import os
-from email_config import gmail_pass, user, host, port
+import logging
+from src.utils.email_config import gmail_pass, user, host, port
 
 def send_email_w_report_attachment(receiver, _from, subject, body, filename):
     message = MIMEMultipart()
@@ -23,10 +24,15 @@ def send_email_w_report_attachment(receiver, _from, subject, body, filename):
     attachment.add_header('Content-Disposition', 'attachment', filename=attachment_name)
     message.attach(attachment)
 
-    server = smtplib.SMTP_SSL(host, port)
-    server.login(user, gmail_pass)
 
-    server.sendmail(_from, receiver, message.as_string())
-    server.quit()
+    try:
+        server = smtplib.SMTP_SSL(host, port)
+        server.login(user, gmail_pass)
+        server.sendmail(_from, receiver, message.as_string())
+        server.quit()
 
-    return attachment_name
+        return attachment_name
+
+    except smtplib.SMTPException as e:
+        logging.error(f"SMTP error while sending email: {e}")
+        raise 

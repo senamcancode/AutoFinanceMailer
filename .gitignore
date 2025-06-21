@@ -6,3 +6,4 @@ dist/
 build/
 .DS_Store
 monitor.spec
+AutoFinanceMailer/email_config.py

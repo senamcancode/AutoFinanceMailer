@@ -3,8 +3,8 @@ from pathlib import Path
 import watchdog.events
 from watchdog.observers import Observer
 from watchdog.events import RegexMatchingEventHandler
-from email_utils import send_email_w_report_attachment
-from email_config import receiver, user, subject, message
+from src.utils.email_utils import send_email_w_report_attachment
+from src.utils.email_config import receiver, user, subject, message
 import logging 
 
 class MyHandler(RegexMatchingEventHandler):
@@ -12,9 +12,14 @@ class MyHandler(RegexMatchingEventHandler):
         watchdog.events.RegexMatchingEventHandler.__init__(self, regexes=[r'.*\/Downloads\/MonthlyStatement.*-\d{4}\-\d{2}\.pdf$'], ignore_directories=True, case_sensitive=False)
 
     def on_created(self, event):
-        logging.info("Watchdog received Created Event", event.src_path)
-        trading_report = send_email_w_report_attachment(receiver, user, subject, message, event.src_path)
-        logging.info(f"Email attachment {trading_report} successfully sent to {receiver}")
+        logging.info(f"Watchdog received Created Event: {event.src_path}")
+
+
+        try:
+            trading_report = send_email_w_report_attachment(receiver, user, subject, message, event.src_path)
+            logging.info(f"Email attachment {trading_report} successfully sent to {receiver}")
+        except Exception as e:
+            logging.error(f"Failed to send email report for {event.src_path}: {e}")
 
         return super().on_created(event)
 
@@ -31,7 +36,4 @@ def monitor():
 
     observer.stop()
     observer.join()
-
-if __name__ == "__main__":
-    monitor()
 
