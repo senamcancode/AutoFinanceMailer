@@ -5,15 +5,16 @@ from watchdog.observers import Observer
 from watchdog.events import RegexMatchingEventHandler
 from email_utils import send_email_w_report_attachment
 from email_config import receiver, user, subject, message
+import logging 
 
 class MyHandler(RegexMatchingEventHandler):
     def __init__(self):
         watchdog.events.RegexMatchingEventHandler.__init__(self, regexes=[r'.*\/Downloads\/MonthlyStatement.*-\d{4}\-\d{2}\.pdf$'], ignore_directories=True, case_sensitive=False)
 
     def on_created(self, event):
-        print("Watchdog received Created Event", event.src_path)
+        logging.info("Watchdog received Created Event", event.src_path)
         trading_report = send_email_w_report_attachment(receiver, user, subject, message, event.src_path)
-        print(f"Email attachment {trading_report} successfully sent to {receiver}")
+        logging.info(f"Email attachment {trading_report} successfully sent to {receiver}")
 
         return super().on_created(event)
 

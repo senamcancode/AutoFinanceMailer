@@ -2,3 +2,7 @@
 __pycache__/
 email_config.py
 test_folder/
+dist/
+build/
+.DS_Store
+monitor.spec

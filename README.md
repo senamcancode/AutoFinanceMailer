@@ -77,8 +77,7 @@ To stop it, type q and press Enter.
 
 ## Planned Features
 - **Persistent app execution:**
-  - Package as an executable (e.g .exe or background service) that runs continuously 
-  - Use pyintaller for creating platform-specific binaries
+  - Package as an executable (e.g .exe or background service) that runs continuously
 - **AI-powered email summaries:**
   - Use a local or cloud-based AI model to extract and summarise the key content of each monthly report
   - Summary included in the email body to provide context at a glance 
