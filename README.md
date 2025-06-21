@@ -91,6 +91,7 @@ To stop it, type q and press Enter.
   - Bypass the need to manually upload PDFs
 - **Dynamic file matching support:**
   - Allow pattern customisation for different brokerages/platforms
+- **File Locking** 
 
 ## Lessons Learned 
 - Regex for file detection must be precise to avoid missing or false-positive matches
