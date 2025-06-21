@@ -16,26 +16,6 @@ class MyHandler(RegexMatchingEventHandler):
         if ".download" in event.src_path:
             logging.info(f"Ignored temporary download file: {event.src_path}")
             return 
-        
-        logging.info(f"Watchdog received Created Event: {event.src_path}")
-        
-        file_path = Path(event.src_path)
-        wait_time = 0
-        max_wait = 30
-        last_size = -1 
-
-        while wait_time < max_wait:
-            if not file_path.exists():
-                time.sleep(1)
-                wait_time += 1
-                continue
-
-            current_size = file_path.stat().st_size
-            if current_size == last_size:
-                break
-            last_size = current_size
-            time.sleep(1)
-            wait_time += 1
 
         try:
             trading_report = send_email_w_report_attachment(receiver, user, subject, message, event.src_path)
