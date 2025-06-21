@@ -10,7 +10,6 @@ class MyHandler(RegexMatchingEventHandler):
     def __init__(self):
         watchdog.events.RegexMatchingEventHandler.__init__(self, regexes=[r'.*\/Downloads\/MonthlyStatement.*-\d{4}\-\d{2}\.pdf$'], ignore_directories=True, case_sensitive=False)
 
-
     def on_created(self, event):
         print("Watchdog received Created Event", event.src_path)
         trading_report = send_email_w_report_attachment(receiver, user, subject, message, event.src_path)
@@ -20,7 +19,7 @@ class MyHandler(RegexMatchingEventHandler):
 
 def monitor():
     path = Path.home()
-
+    
     observer = Observer()
     observer.schedule(MyHandler(), path, recursive=True)
     observer.start()
