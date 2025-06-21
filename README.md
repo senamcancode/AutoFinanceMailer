@@ -20,7 +20,7 @@ This tool saves time, reduces friction, and minimises the risk of missed reports
 ## Installation 
 1. Clone the repo: 
 ```
-git clone hteps:github.com/yourusername/InvestMailAutomation.git
+git clone hteps:github.com/yourusername/AutoFinanceMailer.git
 cd InvestMailAutomation
 ```
 
