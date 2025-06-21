@@ -19,9 +19,16 @@ This tool saves time, reduces friction, and minimises the risk of missed reports
 
 ## Installation 
 1. Clone the repo: 
-
+```
+git clone hteps:github.com/yourusername/InvestMailAutomation.git
+cd InvestMailAutomation
+```
 
 2. Install dependencies:
+```
+pip install watchdog
+```
+
 3. Set up your email configuration 
 - Rename email_config.sample.py to email_config.py
 - Fill in your email and SMTP credentials 
@@ -58,6 +65,14 @@ receiver = "receiver_email@example.com"
 subject = "Automated Trading Report"
 message = "This is an automated email of your Monthly Statement"
 
+
+## Usage
+Run monitor script:
+```
+python monitor.py
+```
+The app will recursively watch your home/Downloads folder for the target files.
+To stop it, type q and press Enter.
 
 ## Planned Features
 - **Persistent app execution:**
