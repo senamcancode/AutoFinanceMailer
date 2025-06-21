@@ -62,7 +62,7 @@ user = "your_email@gmail.com"
 host = "smtp.gmail.com"
 port = 465
 receiver = "receiver_email@example.com"
-subject = "Automated Trading Report"
+subject = "Automated Trading Report"`
 message = "This is an automated email of your Monthly Statement"
 ```
 
@@ -78,7 +78,7 @@ To stop it, type q and press Enter.
 ## Planned Features
 - **Persistent app execution:**
   - Package as an executable (e.g .exe or background service) that runs continuously 
-  - Use pysintaller for creating platform-specific binaries
+  - Use pyintaller for creating platform-specific binaries
 - **AI-powered email summaries:**
   - Use a local or cloud-based AI model to extract and summarise the key content of each monthly report
   - Summary included in the email body to provide context at a glance 
